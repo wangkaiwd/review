@@ -1,6 +1,6 @@
 <template>
   <div class="home-swiper">
-    <swiper :options="swiperOption" ref="mySwiper">
+    <swiper :options="swiperOption">
       <!-- slides -->
       <swiper-slide 
         v-for="k in swiper"
