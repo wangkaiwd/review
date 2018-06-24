@@ -48,13 +48,19 @@ export default {
     HomeWeek
   },
   mounted() {
-    fetchHome({}, res => {
-      const { data } = res;
-      this.swiper = data.swiperList;
-      this.iconList = data.iconList;
-      this.homeHotSaleList = data.recommendList;
-      this.weekendList = data.weekendList;
-    });
+    this.getList();
+  },
+  methods: {
+    // 获取首页列表数据
+    getList() {
+      fetchHome({}, res => {
+        const { data } = res;
+        this.swiper = data.swiperList;
+        this.iconList = data.iconList;
+        this.homeHotSaleList = data.recommendList;
+        this.weekendList = data.weekendList;
+      });
+    }
   }
 };
 </script>

@@ -19,6 +19,9 @@ export default {
 <style lang="less" scoped>
 @import "~styles/varibles";
 .city-header {
+  position: fixed;
+  top: 0;
+  left: 0;
   height: 2.1067rem;
   width: 100%;
   background: @bgColor;
@@ -49,6 +52,8 @@ export default {
       border-radius: 0.1067rem;
       text-align: center;
       font-size: 12px;
+      // 为输入框留一些俩边的间隙，比较美观
+      padding: 0 0.1067rem;
     }
   }
 }
