@@ -3,6 +3,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import Home from '@/views/home/home'
+import City from '@/views/city/city'
 
 const routes = [
   {
@@ -14,6 +15,11 @@ const routes = [
     path: '/home',
     component: Home,
     name: '首页',
+  },
+  {
+    path: '/city',
+    component: City,
+    name: '城市选择'
   }
 
 ]

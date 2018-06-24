@@ -1,13 +1,18 @@
+@import "~styles/minix.less";
 #app {
   max-width: 640px;
   margin: 0 auto;
   font-size: 14px;
-}
-
-.icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
   overflow: hidden;
+  .title {
+    .ellipsis();
+    height: 1.0667rem;
+    width: 100%;
+    background-color: #eee;
+    line-height: 1.0667rem;
+    padding-left: 0.4267rem;
+  }
+  [v-cloak] {
+    display: none;
+  }
 }

@@ -9,6 +9,14 @@
       :iconList="iconList"
     >
     </HomeCategory>
+    <HomeSales
+      :homeHotSaleList="homeHotSaleList"
+    >
+    </HomeSales>
+    <HomeWeek
+      :weekendList="weekendList"
+    >  
+    </HomeWeek>
   </div>
 </template>
 
@@ -17,6 +25,8 @@
 import HomeHeader from "./components/Header";
 import HomeSwiper from "./components/Swiper";
 import HomeCategory from "./components/Category";
+import HomeSales from "./components/HotSales.vue";
+import HomeWeek from "./components/Weekend.vue";
 
 // 请求接口
 import { fetchHome } from "@/api/home";
@@ -25,19 +35,25 @@ export default {
   data() {
     return {
       swiper: [],
-      iconList: []
+      iconList: [],
+      homeHotSaleList: [],
+      weekendList: []
     };
   },
   components: {
     HomeHeader,
     HomeSwiper,
-    HomeCategory
+    HomeCategory,
+    HomeSales,
+    HomeWeek
   },
   mounted() {
     fetchHome({}, res => {
       const { data } = res;
       this.swiper = data.swiperList;
       this.iconList = data.iconList;
+      this.homeHotSaleList = data.recommendList;
+      this.weekendList = data.weekendList;
     });
   }
 };

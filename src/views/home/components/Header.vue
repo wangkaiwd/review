@@ -10,7 +10,7 @@
         iconText="icon-sousuo">
       </BaseIcon>
     </div>
-    <div class="header-right">
+    <div class="header-right" @click="$router.push('/city')">
       城市网
       <BaseIcon iconText="icon-jiantou"></BaseIcon>
     </div>
@@ -19,17 +19,23 @@
 
 <script>
 export default {
-  name: "TopHeader"
+  name: "TopHeader",
+  mounted() {
+    console.log("this", this.$route, this.$router);
+  }
 };
 </script>
 
 <style lang="less">
 @import "~styles/varibles.less";
 .header {
-  height: 1.1467rem;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  height: @headerHeight;
   background-color: @bgColor;
   display: flex;
-  line-height: 1.1467rem;
+  line-height: @headerHeight;
   color: white;
   .header-left {
     width: 0.8533rem;
