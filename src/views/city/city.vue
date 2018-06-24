@@ -6,12 +6,17 @@
       :cities="cities"
     >
     </CityList>
+    <CityLetter
+      :letterList="letterList"
+    >
+    </CityLetter>
   </div>
 </template>
 
 <script>
 import CityHeader from "./components/Header.vue";
 import CityList from "./components/List.vue";
+import CityLetter from "./components/Letter.vue";
 
 // 接口
 import { fetchCity } from "@/api/home";
@@ -19,12 +24,14 @@ export default {
   name: "City",
   components: {
     CityHeader,
-    CityList
+    CityList,
+    CityLetter
   },
   data() {
     return {
       cities: {},
-      hotCities: []
+      hotCities: [],
+      letterList: []
     };
   },
   mounted() {
@@ -36,6 +43,7 @@ export default {
       fetchCity({}, res => {
         this.cities = res.data.cities;
         this.hotCities = res.data.hotCities;
+        this.letterList = Object.keys(this.cities);
       });
     }
   }
@@ -43,6 +51,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.city {
-}
 </style>

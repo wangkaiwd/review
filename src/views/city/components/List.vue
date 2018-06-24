@@ -1,50 +1,43 @@
 <template>
-  <div class="city-list">
-    <div class="city-current">
-      <h2 class="city-title">当前城市</h2>
-      <div class="city-box">
-        <p>阿坝</p>
+  <div class="city-list" ref="wrapper">
+    <div class="content">
+      <div class="city-current">
+        <h2 class="city-title">当前城市</h2>
+        <div class="city-box">
+          <p>阿坝</p>
+        </div>
       </div>
-    </div>
-    <div class="city-hot">
-      <div class="city-title">
-        热门城市
+      <div class="city-hot">
+        <div class="city-title">
+          热门城市
+        </div>
+        <div class="city-box">
+          <p 
+            v-for="item in hotCities"
+            :key="item.id"
+          >
+            {{item.name}}
+          </p>
+        </div>
       </div>
-      <div class="city-box">
-        <p 
-          v-for="item in hotCities"
+      <div class="city-content"
+        v-for="(val,key) in cities"
+        :key="key"
+      >
+        <div class="city-title">{{key}}</div>
+        <div class="city-content-list"
+          v-for="item in val"
           :key="item.id"
         >
-          {{item.name}}
-        </p>
+        {{item.name}}
+        </div>
       </div>
-    </div>
-    <div class="city-content"
-      v-for="(val,key) in cities"
-      :key="key"
-    >
-      <div class="city-title">{{key}}</div>
-      <div class="city-content-list"
-        v-for="item in val"
-        :key="item.id"
-      >
-      {{item.name}}
-      </div>
-    </div>
-    <div class="letter">
-      <ul>
-        <li 
-          v-for="(val,key) in cities"
-          :key="key"
-        >
-          {{key}}
-        </li>
-      </ul>
     </div>
   </div>
 </template>
 
 <script>
+import BScroll from "better-scroll";
 export default {
   props: {
     cities: {
@@ -55,6 +48,11 @@ export default {
       type: Array,
       required: true
     }
+  },
+  created() {
+    this.$nextTick(() => {
+      this.scroll = new BScroll(this.$refs.wrapper, {});
+    });
   }
 };
 </script>
@@ -63,13 +61,18 @@ export default {
 @import "~styles/varibles.less";
 .city-list {
   position: absolute;
-  top: 0;
+  top: 2.1067rem;
   left: 0;
   bottom: 0;
-  // background-color: red;
-  padding-top: 2.1067rem;
   color: #333;
   overflow: hidden;
+  .city-content {
+    position: relative;
+    & > .city-title {
+      position: sticky;
+      top: 0;
+    }
+  }
   .city-title {
     height: 0.6933rem;
     background-color: #eee;
@@ -96,15 +99,6 @@ export default {
     height: 0.9867rem;
     line-height: 0.9867rem;
     border-bottom: 1px solid #eaeaea;
-  }
-  .letter {
-    position: fixed;
-    right: 0.1067rem;
-    top: 50%;
-    color: @bgColor;
-    font-size: 14px;
-    text-align: center;
-    transform: translateY(-50%);
   }
 }
 </style>

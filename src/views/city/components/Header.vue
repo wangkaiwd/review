@@ -19,9 +19,6 @@ export default {
 <style lang="less" scoped>
 @import "~styles/varibles";
 .city-header {
-  position: fixed;
-  top: 0;
-  left: 0;
   height: 2.1067rem;
   width: 100%;
   background: @bgColor;
