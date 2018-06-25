@@ -4,10 +4,12 @@
     <CityList
       :hotCities="hotCities"
       :cities="cities"
+      :position="position"
     >
     </CityList>
     <CityLetter
       :letterList="letterList"
+      @letterPosition="letterPosition"
     >
     </CityLetter>
   </div>
@@ -31,7 +33,8 @@ export default {
     return {
       cities: {},
       hotCities: [],
-      letterList: []
+      letterList: [],
+      position: ""
     };
   },
   mounted() {
@@ -45,6 +48,10 @@ export default {
         this.hotCities = res.data.hotCities;
         this.letterList = Object.keys(this.cities);
       });
+    },
+    // 同步城市列表标题位置
+    letterPosition(val) {
+      this.position = val;
     }
   }
 };

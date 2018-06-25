@@ -4,6 +4,7 @@
       <li 
         v-for="item in letterList"
         :key="item"
+        @click="handleClick(item)"
       >
         {{item}}
       </li>
@@ -18,6 +19,11 @@ export default {
     letterList: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    handleClick(item) {
+      this.$emit("letterPosition", item);
     }
   }
 };

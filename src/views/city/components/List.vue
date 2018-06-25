@@ -20,9 +20,11 @@
           </p>
         </div>
       </div>
-      <div class="city-content"
+      <div 
+        class="city-content"
         v-for="(val,key) in cities"
         :key="key"
+        :ref="key"
       >
         <div class="city-title">{{key}}</div>
         <div 
@@ -49,6 +51,10 @@ export default {
     hotCities: {
       type: Array,
       required: true
+    },
+    position: {
+      type: String,
+      required: true
     }
   },
   data() {
@@ -60,6 +66,14 @@ export default {
     this.$nextTick(() => {
       this.scroll = new BScroll(this.$refs.wrapper, {});
     });
+  },
+  watch: {
+    position(newVal, oldVal) {
+      if (!newVal) return;
+      // 这里element为什么是数组
+      const element = this.$refs[newVal];
+      this.scroll.scrollToElement(element[0], 200, 0, 0);
+    }
   }
 };
 </script>
