@@ -4,7 +4,7 @@
       <div class="city-current">
         <h2 class="city-title">当前城市</h2>
         <div class="city-box">
-          <p>阿坝</p>
+          <p>{{currentCity}}</p>
         </div>
       </div>
       <div class="city-hot">
@@ -25,9 +25,11 @@
         :key="key"
       >
         <div class="city-title">{{key}}</div>
-        <div class="city-content-list"
+        <div 
+          class="city-content-list"
           v-for="item in val"
           :key="item.id"
+          @click="currentCity=item.name"
         >
         {{item.name}}
         </div>
@@ -49,6 +51,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      currentCity: "阿坝"
+    };
+  },
   created() {
     this.$nextTick(() => {
       this.scroll = new BScroll(this.$refs.wrapper, {});
@@ -66,13 +73,14 @@ export default {
   bottom: 0;
   color: #333;
   overflow: hidden;
-  .city-content {
-    position: relative;
-    & > .city-title {
-      position: sticky;
-      top: 0;
-    }
-  }
+  // 粘性定位的所有父元素都不能设置overflow: hidden,否则不会生效
+  // .city-content {
+  //   position: relative;
+  //   & > .city-title {
+  //     position: sticky;
+  //     top: 0;
+  //   }
+  // }
   .city-title {
     height: 0.6933rem;
     background-color: #eee;
