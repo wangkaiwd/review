@@ -20,9 +20,7 @@
 <script>
 export default {
   name: "TopHeader",
-  mounted() {
-    console.log("this", this.$route, this.$router);
-  }
+  mounted() {}
 };
 </script>
 

@@ -1,7 +1,12 @@
 <template>
   <div class="city-header">
     <div class="city-header-top">
-      <BaseIcon class="city-back" iconText="icon-fanhui"></BaseIcon>
+      <BaseIcon 
+        class="city-back" 
+        iconText="icon-fanhui"
+        @click.native="$router.go(-1)"
+      >
+      </BaseIcon>
       <h2>城市选择</h2>
     </div>
     <div class="city-header-input">
