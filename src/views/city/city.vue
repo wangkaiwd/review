@@ -5,11 +5,13 @@
       :hotCities="hotCities"
       :cities="cities"
       :position="position"
+      @letterScroll="activeIndex=$event"
     >
     </CityList>
     <CityLetter
       :letterList="letterList"
       @letterPosition="letterPosition"
+      :activeIndex="activeIndex"
     >
     </CityLetter>
   </div>
@@ -34,7 +36,8 @@ export default {
       cities: {},
       hotCities: [],
       letterList: [],
-      position: ""
+      position: "",
+      activeIndex: -1
     };
   },
   mounted() {

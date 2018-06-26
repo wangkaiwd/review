@@ -2,8 +2,10 @@ import Axios from 'axios'
 import HTTP from './httpConfig'
 const axiosInstance = Axios.create({
   baseURL: `${HTTP.HTTP_SERVER}${HTTP.HTTP_PREFIX}`,
-  timeout: 2000,
+  timeout: 8000,
 })
+
+// TODO:请求超时的友好提示
 
 // 添加请求拦截器
 axiosInstance.interceptors.request.use((config) => {

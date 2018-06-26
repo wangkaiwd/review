@@ -41,6 +41,7 @@
 </template>
 
 <script>
+// TODO:当进行点击定位的时候，激活样式会少1
 import BScroll from "better-scroll";
 export default {
   props: {
@@ -62,10 +63,25 @@ export default {
       currentCity: "阿坝"
     };
   },
-  created() {
+  mounted() {
     this.$nextTick(() => {
-      this.scroll = new BScroll(this.$refs.wrapper, {});
+      this.initScroll();
     });
+  },
+  computed: {
+    // 获取高度数组
+    calculateHeight() {
+      let heightList = [];
+      const currentCity = document.querySelector(".city-current");
+      const hotCity = document.querySelector(".city-hot");
+      let initHeight = currentCity.clientHeight + hotCity.clientHeight;
+      const content = document.querySelectorAll(".city-content");
+      for (let i = 0; i < content.length; i++) {
+        heightList.push(initHeight);
+        initHeight += content[i].clientHeight;
+      }
+      return heightList;
+    }
   },
   watch: {
     position(newVal, oldVal) {
@@ -73,6 +89,25 @@ export default {
       // 这里element为什么是数组
       const element = this.$refs[newVal];
       this.scroll.scrollToElement(element[0], 200, 0, 0);
+    }
+  },
+  methods: {
+    // 初始化better-scroll
+    initScroll() {
+      this.scroll = new BScroll(this.$refs.wrapper, {
+        probeType: 3
+      });
+      this.scroll.on("scroll", this.onScroll);
+    },
+    // 监听better-scroll的scroll事件
+    onScroll(pos) {
+      let y = -pos.y;
+      for (let i = 0; i < this.calculateHeight.length; i++) {
+        if (y < this.calculateHeight[i]) {
+          this.$emit("letterScroll", i - 1);
+          return;
+        }
+      }
     }
   }
 };

@@ -2,9 +2,10 @@
   <div class="city-letter">
     <ul>
       <li 
-        v-for="item in letterList"
-        :key="item"
+        v-for="(item,i) in letterList"
+        :key="i"
         @click="handleClick(item)"
+        :class="{active: i===activeIndex}"
       >
         {{item}}
       </li>
@@ -18,6 +19,10 @@ export default {
   props: {
     letterList: {
       type: Array,
+      required: true
+    },
+    activeIndex: {
+      type: Number,
       required: true
     }
   },
@@ -41,5 +46,14 @@ export default {
   color: @bgColor;
   font-size: 14px;
   text-align: center;
+  li {
+    padding: 0.0533rem;
+    font-size: 12px;
+  }
+  .active {
+    background-color: red;
+    color: #fff;
+    border-radius: 2%;
+  }
 }
 </style>
