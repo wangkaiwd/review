@@ -16,6 +16,8 @@ import './assets/styles/base.less'
 // 全局组件
 import BaseIcon from './components/icon/BaseIcon.vue'
 
+Vue.prototype.$bus = new Vue();
+
 Vue.component('BaseIcon', BaseIcon)
 
 Vue.config.productionTip = false

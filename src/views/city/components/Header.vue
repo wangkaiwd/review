@@ -1,5 +1,5 @@
 <template>
-  <div class="city-header">
+  <div class="city-header" ref="cityHeader">
     <div class="city-header-top">
       <BaseIcon 
         class="city-back" 
@@ -17,7 +17,10 @@
 
 <script>
 export default {
-  name: "CityHeader"
+  name: "CityHeader",
+  mounted() {
+    this.$bus.$emit("cityHeaderHeight", this.$refs.cityHeader.clientHeight);
+  }
 };
 </script>
 
