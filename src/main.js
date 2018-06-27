@@ -5,6 +5,8 @@ import fastClick from 'fastclick'
 // 移动端300毫秒的延迟
 fastClick.attach(document.body)
 
+import flexible from 'amfe-flexible';
+
 // swiper组件
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
