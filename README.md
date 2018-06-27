@@ -37,8 +37,13 @@
 
 ### 五：定位`top=0;bottom=0;`的小技巧
 通过定位元素(`absolute,fixed`)的`top`和`bottom`属性，可以很好的实现一些比较复杂的页面布局。这里以城市页面布局为例  
-![布局](./shotScreen/webLayout.png)
+![布局](./shotScreen/webLayout.png)  
 
+### 六：触摸操作事件
+
+### 七：性能优化
+1. 减少`DOM`操作
+2. 记性函数节流
 
 ### 疑问记录
 1. letter为什么单独建立一个组件之后好用？

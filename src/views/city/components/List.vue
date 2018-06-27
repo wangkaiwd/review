@@ -41,7 +41,6 @@
 </template>
 
 <script>
-// TODO:当进行点击定位的时候，激活样式会少1
 import BScroll from "better-scroll";
 export default {
   props: {
@@ -86,7 +85,6 @@ export default {
   watch: {
     position(newVal, oldVal) {
       if (!newVal) return;
-      // 这里element为什么是数组
       const element = this.$refs[newVal];
       this.scroll.scrollToElement(element[0], 200, 0, 0);
     }
@@ -101,13 +99,23 @@ export default {
     },
     // 监听better-scroll的scroll事件
     onScroll(pos) {
-      let y = -pos.y;
-      for (let i = 0; i < this.calculateHeight.length; i++) {
-        if (y < this.calculateHeight[i]) {
-          this.$emit("letterScroll", i - 1);
-          return;
-        }
+      if (this.timer) {
+        clearTimeout(this.timer);
       }
+      this.timer = setTimeout(() => {
+        let y = -pos.y;
+        for (let i = 0; i < this.calculateHeight.length; i++) {
+          if (y < Math.floor(this.calculateHeight[i] - 3)) {
+            this.$emit("letterScroll", i - 1);
+            return;
+          } else if (
+            y >
+            this.calculateHeight[this.calculateHeight.length - 1] - 3
+          ) {
+            this.$emit("letterScroll", i);
+          }
+        }
+      }, 16);
     }
   }
 };
