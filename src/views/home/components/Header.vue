@@ -11,7 +11,7 @@
       </BaseIcon>
     </div>
     <div class="header-right" @click="$router.push('/city')">
-      城市网
+      {{city}}
       <BaseIcon iconText="icon-jiantou"></BaseIcon>
     </div>
   </div>
@@ -20,7 +20,14 @@
 <script>
 export default {
   name: "TopHeader",
-  mounted() {}
+  mounted() {
+    console.log('store',this.$store.state);
+  },
+  computed: {
+    city() {
+      return this.$store.state.city;
+    }
+  }
 };
 </script>
 
