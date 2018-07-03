@@ -15,7 +15,7 @@
           <p
             v-for="item in hotCities"
             :key="item.id"
-            @click="currentCity=item.name"
+            @click="handleCityClick(item.name)"
           >
             {{item.name}}
           </p>
@@ -32,7 +32,7 @@
           class="city-content-list"
           v-for="item in val"
           :key="item.id"
-          @click="currentCity=item.name"
+          @click="handleCityClick(item.name)"
         >
           {{item.name}}
         </div>
@@ -59,11 +59,6 @@
         required: true
       }
     },
-    data() {
-      return {
-        currentCity: "阿坝"
-      };
-    },
     mounted() {
       this.$nextTick(() => {
         this.initScroll();
@@ -82,6 +77,9 @@
           initHeight += content[i].clientHeight;
         }
         return heightList;
+      },
+      currentCity() {
+        return this.$store.state.city;
       }
     },
     watch: {
@@ -119,15 +117,17 @@
           }
         }, 16);
       },
-      // handleHotCity(city) {
-      //   alert(city);
-      // }
+      handleCityClick(city) {
+        this.$store.dispatch('changeCity',city);
+        this.$router.push('/home');
+      }
     }
   };
 </script>
 
 <style lang="less" scoped>
   @import "~styles/varibles.less";
+
   .city-list {
     position: absolute;
     top: 2.1067rem;

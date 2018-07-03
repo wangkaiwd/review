@@ -21,7 +21,7 @@
 export default {
   name: "TopHeader",
   mounted() {
-    console.log('store',this.$store.state);
+    // console.log('store',this.$store.state);
   },
   computed: {
     city() {
