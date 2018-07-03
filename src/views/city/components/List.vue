@@ -118,7 +118,7 @@
         }, 16);
       },
       handleCityClick(city) {
-        this.$store.dispatch('changeCity',city);
+        this.$store.commit('changeCity',city);
         this.$router.push('/home');
       }
     }

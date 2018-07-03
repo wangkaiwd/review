@@ -18,6 +18,7 @@
           class="city-list"
           v-for="item in list"
           :key="item.id"
+          @click="handleCityClick(item.name)"
         >
           {{item.name}}
         </li>
@@ -51,6 +52,12 @@
     computed: {
       noMatch() {
         return !this.list.length;
+      }
+    },
+    methods: {
+      handleCityClick(city) {
+        this.$store.commit('changeCity',city);
+        this.$router.push('/home');
       }
     },
     watch: {
