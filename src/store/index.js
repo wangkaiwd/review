@@ -7,6 +7,11 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state,
   mutations,
+  getters: {
+    doubleCity(state) {
+      return state.city + ' ' + state.city;
+    }
+  }
 });
 
 export default store;
